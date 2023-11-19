@@ -1,4 +1,3 @@
-import './App.css'
 export const App = () => {
-  return <>Hello</>
+  return <div>Hello</div>
 }
