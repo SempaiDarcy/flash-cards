@@ -15,9 +15,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@it-incubator/eslint-config": "^1.0.1",
+    "@it-incubator/prettier-config": "^0.1.2",
+    "@it-incubator/stylelint-config": "^0.1.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
+    "stylelint": "^15.11.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }
