@@ -38,6 +38,11 @@ const meta = {
       type: { name: 'string', required: true },
     },
 
+    ref: {
+      description: 'A ref, forwarded to the root slot of the checkbox component',
+      table: { type: { summary: 'ForwardedRef<ElementRef<T>>, T extends ElementType' } },
+    },
+
     variant: {
       description: `Variant prop is used to add appropriate class name to root tag.
         It is also used to set as-prop if it is not specified.`,

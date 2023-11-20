@@ -1,4 +1,11 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+} from 'react'
 
 import { clsx } from 'clsx'
 
@@ -14,7 +21,7 @@ type TypographyProps<T extends ElementType> = {
 export const Typography = forwardRef(
   <T extends ElementType = 'p'>(
     { as, children, className, variant = 'body1', ...props }: TypographyProps<T>,
-    ref: Ref<T>
+    ref: ForwardedRef<ElementRef<T>>
   ) => {
     const Component = as || elementsMap[variant]
 
