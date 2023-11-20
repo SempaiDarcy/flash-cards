@@ -7,6 +7,7 @@ import '@fontsource/roboto/700.css'
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
+    docs: { toc: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,
