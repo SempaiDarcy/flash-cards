@@ -1,6 +1,5 @@
 html {
-  box-sizing: border-box;
-  font-size: 100%;
+  font-size: 62.5%;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,10 +31,5 @@ a:visited {
 body {
   margin: 0;
   padding: 0;
-
-  font-family: var(--font-family-primary), sans-serif;
-  line-height: var(--line-height-m);
-  color: var(--color-light-100);
-
-  background-color: var(--color-dark-900);
+  font-size: 1.6rem;
 }

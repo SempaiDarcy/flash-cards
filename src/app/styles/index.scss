@@ -1,3 +1,10 @@
-@forward 'colors';
-@forward 'typography';
-@forward 'boilerplate';
+@use 'colors';
+@use 'typography';
+@use 'reset';
+
+body {
+  font-family: var(--font-family-primary);
+  line-height: var(--line-height-m);
+  color: var(--color-light-100);
+  background-color: var(--color-dark-900);
+}
