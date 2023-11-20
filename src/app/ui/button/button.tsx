@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import { clsx } from 'clsx'
+import clsx from 'clsx'
 
 import s from './button.module.scss'
 
@@ -15,7 +15,7 @@ export const Button = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
 ) => {
   const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
-  const classes = clsx(s[variant], className, fullWidth && s.fullWidth)
+  const buttonClasses = clsx(s[variant], fullWidth && s.fullWidth, className, s.customButton)
 
-  return <Component className={classes} {...rest} />
+  return <Component className={buttonClasses} {...rest} />
 }

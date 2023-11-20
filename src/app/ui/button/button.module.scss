@@ -1,17 +1,114 @@
+@mixin button-styles {
+  cursor: pointer;
+
+  padding: 6px 28px;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+
+  border: none;
+  border-radius: 4px;
+}
+
 .primary {
-  background-color: red;
+  @include button-styles;
+
+  background-color: var(--color-accent-500);
+
+  &:hover {
+    background-color: var(--color-accent-300);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-accent-700);
+  }
+
+  &:active {
+    background-color: var(--color-accent-700);
+  }
+
+  &:disabled {
+    cursor: auto;
+    color: var(--color-light-900);
+    background-color: var(--color-accent-900);
+  }
 }
 
 .secondary {
-  background-color: green;
+  @include button-styles;
+
+  background-color: var(--color-dark-300);
+
+  &:hover {
+    background-color: var(--color-dark-100);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-dark-300);
+  }
+
+  &:active {
+    background-color: var(--color-dark-500);
+  }
+
+  &:disabled {
+    cursor: auto;
+    color: var(--color-light-900);
+    background-color: var(--color-dark-300);
+  }
 }
 
 .tertiary {
-  background-color: blue;
+  @include button-styles;
+
+  color: var(--color-accent-500);
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-accent-500);
+
+  &:hover {
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus-visible {
+    padding: 5px 27px;
+    background-color: var(--color-dark-900);
+  }
+
+  &:active {
+    background-color: var(--color-accent-900);
+  }
+
+  &:disabled {
+    cursor: auto;
+    color: var(--color-accent-900);
+    background-color: var(--color-dark-900);
+    border: 1px solid var(--color-accent-900);
+  }
 }
 
 .link {
-  background-color: yellow;
+  @include button-styles;
+
+  font-size: var(--font-size-m);
+  color: var(--color-accent-500);
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: var(--color-accent-300);
+  }
+
+  &:focus-visible {
+    border-radius: 25px;
+  }
+
+  &:active {
+    color: var(--color-accent-700);
+  }
+
+  &:disabled {
+    color: var(--color-accent-900);
+  }
 }
 
 .fullWidth {
