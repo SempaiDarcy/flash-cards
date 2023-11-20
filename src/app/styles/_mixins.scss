@@ -1,6 +1,7 @@
 @use 'sass:math';
 
 @mixin flex($justify: center, $align: center, $direction: null, $wrap: null) {
+  display: flex;
   flex-flow: $direction $wrap;
   align-items: $align;
   justify-content: $justify;
