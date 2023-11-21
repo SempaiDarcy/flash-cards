@@ -1,21 +1,44 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  ReactNode,
+  Ref,
+  forwardRef,
+} from 'react'
 
+import { Typography } from '@/app/ui/typography'
 import clsx from 'clsx'
 
 import s from './button.module.scss'
 
-export type ButtonProps<T extends ElementType = 'button'> = {
+export type ButtonVariant = 'link' | 'primary' | 'secondary' | 'tertiary'
+
+type OwnProps<T extends ElementType> = {
   as?: T
+  children?: ReactNode
   className?: string
   fullWidth?: boolean
-  variant?: 'link' | 'primary' | 'secondary' | 'tertiary'
-} & ComponentPropsWithoutRef<T>
-
-export const Button = <T extends ElementType = 'button'>(
-  props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
-) => {
-  const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
-  const buttonClasses = clsx(s[variant], fullWidth && s.fullWidth, className, s.customButton)
-
-  return <Component className={buttonClasses} {...rest} />
+  variant?: ButtonVariant
 }
+
+export type ButtonProps<T extends ElementType> = OwnProps<T> &
+  Omit<ComponentPropsWithoutRef<T>, keyof OwnProps<T>>
+
+const ButtonRender = <T extends ElementType = 'button'>(
+  { as, children, className, fullWidth, variant = 'primary', ...rest }: ButtonProps<T>,
+  ref: Ref<ElementRef<T>>
+) => {
+  const Component = as ?? ('button' as string)
+  const buttonClasses = clsx(s[variant], fullWidth && s.fullWidth, className)
+
+  return (
+    <Component className={buttonClasses} ref={ref} {...rest}>
+      <Typography as={'span'} variant={variant === 'link' ? 'subtitle1' : 'subtitle2'}>
+        {children}
+      </Typography>
+    </Component>
+  )
+}
+
+export const Button = forwardRef(ButtonRender) as typeof ButtonRender

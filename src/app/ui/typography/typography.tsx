@@ -23,7 +23,7 @@ type TypographyProps<T extends ElementType> = OwnProps<T> &
 
 export const TypographyRender = <T extends ElementType = 'p'>(
   { as, children, className, variant = 'body1', ...props }: TypographyProps<T>,
-  ref: Ref<ElementRef<T>> = null
+  ref: Ref<ElementRef<T>>
 ) => {
   const Component = as || elementsMap[variant]
 

@@ -1,10 +1,10 @@
+@use '../../styles/helpers' as *;
+
 @mixin button-styles {
   cursor: pointer;
 
-  padding: 6px 28px;
-
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-bold);
+  height: em(36);
+  padding: 0 em(28);
 
   border: none;
   border-radius: 4px;
@@ -19,16 +19,13 @@
     background-color: var(--color-accent-300);
   }
 
-  &:focus-visible {
-    background-color: var(--color-accent-700);
-  }
-
+  &:focus-visible,
   &:active {
     background-color: var(--color-accent-700);
   }
 
   &:disabled {
-    cursor: auto;
+    cursor: default;
     color: var(--color-light-900);
     background-color: var(--color-accent-900);
   }
@@ -43,16 +40,13 @@
     background-color: var(--color-dark-100);
   }
 
-  &:focus-visible {
-    background-color: var(--color-dark-300);
-  }
-
+  &:focus-visible,
   &:active {
     background-color: var(--color-dark-500);
   }
 
   &:disabled {
-    cursor: auto;
+    cursor: default;
     color: var(--color-light-900);
     background-color: var(--color-dark-300);
   }
@@ -62,51 +56,49 @@
   @include button-styles;
 
   color: var(--color-accent-500);
-  background-color: var(--color-dark-900);
+  background-color: transparent;
   border: 1px solid var(--color-accent-500);
+
+  &:is(:hover, :active, :focus-visible) {
+    color: var(--color-accent-700);
+    border-color: var(--color-accent-700);
+  }
 
   &:hover {
     background-color: var(--color-dark-500);
   }
 
-  &:focus-visible {
-    padding: 5px 27px;
-    background-color: var(--color-dark-900);
-  }
-
+  &:focus-visible,
   &:active {
     background-color: var(--color-accent-900);
   }
 
   &:disabled {
-    cursor: auto;
+    cursor: default;
     color: var(--color-accent-900);
-    background-color: var(--color-dark-900);
-    border: 1px solid var(--color-accent-900);
+    background-color: transparent;
+    border-color: var(--color-accent-900);
   }
 }
 
 .link {
   @include button-styles;
 
-  font-size: var(--font-size-m);
   color: var(--color-accent-500);
-  background: transparent;
-  border: none;
+  background-color: transparent;
+  border-radius: em(36);
 
   &:hover {
     color: var(--color-accent-300);
   }
 
-  &:focus-visible {
-    border-radius: 25px;
-  }
-
+  &:focus-visible,
   &:active {
     color: var(--color-accent-700);
   }
 
   &:disabled {
+    cursor: default;
     color: var(--color-accent-900);
   }
 }

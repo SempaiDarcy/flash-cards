@@ -48,7 +48,7 @@ const meta = {
 
     ref: {
       description: 'A ref, forwarded to the root slot of the checkbox component',
-      table: { type: { summary: 'ForwardedRef<HTMLButtonElement>' } },
+      table: { type: { summary: 'Ref<HTMLButtonElement>' } },
     },
 
     required: { table: { type: { summary: 'boolean' } } },
