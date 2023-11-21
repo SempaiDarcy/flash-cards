@@ -2,8 +2,8 @@ import {
   ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
-  ForwardedRef,
   ReactNode,
+  Ref,
   forwardRef,
 } from 'react'
 
@@ -11,27 +11,30 @@ import { clsx } from 'clsx'
 
 import s from './typography.module.scss'
 
-type TypographyProps<T extends ElementType> = {
+type OwnProps<T extends ElementType> = {
   as?: T
   children: ReactNode
   className?: string
   variant?: TypographyVariant
-} & ComponentPropsWithoutRef<T>
+}
 
-export const Typography = forwardRef(
-  <T extends ElementType = 'p'>(
-    { as, children, className, variant = 'body1', ...props }: TypographyProps<T>,
-    ref: ForwardedRef<ElementRef<T>>
-  ) => {
-    const Component = as || elementsMap[variant]
+type TypographyProps<T extends ElementType> = OwnProps<T> &
+  Omit<ComponentPropsWithoutRef<T>, keyof OwnProps<T>>
 
-    return (
-      <Component className={clsx(className, s[variant])} ref={ref} {...props}>
-        {children}
-      </Component>
-    )
-  }
-)
+export const TypographyRender = <T extends ElementType = 'p'>(
+  { as, children, className, variant = 'body1', ...props }: TypographyProps<T>,
+  ref: Ref<ElementRef<T>> = null
+) => {
+  const Component = as || elementsMap[variant]
+
+  return (
+    <Component className={clsx(className, s[variant])} ref={ref} {...props}>
+      {children}
+    </Component>
+  )
+}
+
+export const Typography = forwardRef(TypographyRender) as typeof TypographyRender
 
 export const elementsMap: Record<TypographyVariant, string> = {
   body1: 'p',

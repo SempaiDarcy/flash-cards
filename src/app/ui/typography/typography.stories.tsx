@@ -56,6 +56,7 @@ const meta = {
     },
   },
 
+  // TODO: add docBlock, representing all typography variants (check storybook docBlock docs for reference)
   component: Typography,
   decorators: [
     Story => (
