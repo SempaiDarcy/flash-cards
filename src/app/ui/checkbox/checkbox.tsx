@@ -1,6 +1,6 @@
 import type { CheckboxProps as RadixCheckboxProps } from '@radix-ui/react-checkbox'
 
-import { FC, forwardRef, useId } from 'react'
+import { forwardRef, useId } from 'react'
 
 import { Typography } from '@/app/ui/typography'
 import { CheckedIcon } from '@/icons/checked-icon'
@@ -12,14 +12,15 @@ import s from './checkbox.module.scss'
 type CheckboxClassNames = 'icon' | 'indicator' | 'label' | 'root' | 'wrapper'
 export type CheckboxClasses = Record<CheckboxClassNames, string>
 
-type CheckboxProps = {
+type OwnProps = {
   checked?: boolean
   classes?: CheckboxClasses
   label?: string
-} & Omit<RadixCheckboxProps, 'asChild' | 'checked' | 'className'>
+}
+type CheckboxProps = OwnProps & Omit<RadixCheckboxProps, 'asChild' | keyof OwnProps>
 
 // TODO: enable default outline color when checkbox is focus-visible state
-export const Checkbox: FC<CheckboxProps> = forwardRef<HTMLButtonElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   ({ classes = {}, label, ...props }, ref) => {
     const id = useId()
 
