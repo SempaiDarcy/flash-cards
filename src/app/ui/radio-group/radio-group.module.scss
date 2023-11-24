@@ -1,0 +1,14 @@
+@use '@/app/styles/helpers' as *;
+
+.root {
+  display: flex;
+  gap: 12px;
+
+  &[data-orientation='horizontal'] {
+    flex-direction: row;
+  }
+
+  &[data-orientation='vertical'] {
+    flex-direction: column;
+  }
+}

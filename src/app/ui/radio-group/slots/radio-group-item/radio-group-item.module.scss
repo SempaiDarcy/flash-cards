@@ -1,0 +1,76 @@
+@use '@/app/styles/mixins' as *;
+@use '@/app/styles/helpers' as *;
+
+.itemWrapper {
+  display: inline-flex;
+  gap: em(8);
+  align-items: center;
+}
+
+.item {
+  @include flex;
+
+  cursor: pointer;
+
+  position: relative;
+
+  align-items: center;
+
+  width: em(36);
+  height: em(36);
+  padding: 0;
+
+  color: var(--color-accent-500);
+
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus-visible,
+  &:active {
+    background-color: var(--color-accent-900);
+  }
+
+  &[data-disabled] {
+    pointer-events: none;
+    color: var(--color-accent-900);
+    background-color: transparent;
+  }
+}
+
+%icon-temp {
+  width: em(24);
+  height: em(24);
+}
+
+.uncheckedIcon {
+  @extend %icon-temp;
+
+  [data-state='checked'] > & {
+    display: none;
+  }
+}
+
+.indicator {
+  @extend %icon-temp;
+
+  position: absolute;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.label {
+  cursor: pointer;
+
+  [data-disabled] + & {
+    pointer-events: none;
+    color: var(--color-light-900);
+  }
+}
