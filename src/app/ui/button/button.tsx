@@ -2,6 +2,7 @@ import {
   ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
+  ReactElement,
   ReactNode,
   Ref,
   forwardRef,
@@ -41,4 +42,6 @@ const ButtonRender = <T extends ElementType = 'button'>(
   )
 }
 
-export const Button = forwardRef(ButtonRender) as typeof ButtonRender
+export const Button = forwardRef(ButtonRender) as <T extends ElementType = 'button'>(
+  props: ButtonProps<T> & { ref?: Ref<ElementRef<T>> }
+) => ReactElement

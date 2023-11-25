@@ -13,6 +13,8 @@ const meta = {
 
     children: { table: { type: { summary: 'ReactNode' } } },
 
+    disabled: { table: { type: { summary: 'boolean' } } },
+
     ref: {
       description: 'A ref, forwarded to the root slot of the button component',
       table: { type: { summary: 'Ref<ElementRef<T>>, T extends ElementType' } },

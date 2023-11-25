@@ -30,10 +30,9 @@ const mergeSlotsMaps = <Slot extends string>(
   slotsMapArray: SlotsMap<Slot>[]
 ): SlotsMap<Slot> =>
   slotNames.reduce((acc, slot) => {
-    return {
-      ...acc,
-      [slot]: slotsMapArray.map(slotsMap => slotsMap[slot]).join(' '),
-    }
+    acc[slot] = slotsMapArray.map(slotsMap => slotsMap[slot]).join(' ')
+
+    return acc
   }, {} as SlotsMap<Slot>)
 
 const getSlotsMap = <Slot extends string, Modifier extends string>(
@@ -41,13 +40,11 @@ const getSlotsMap = <Slot extends string, Modifier extends string>(
   classes: ClassesObj<Slot, Modifier>,
   modifiers?: ModifiersMap<Modifier>
 ): SlotsMap<Slot> => {
-  return slotNames.reduce(
-    (acc, slot) => ({
-      ...acc,
-      [slot]: getClassNamesForSlot(slot, classes, modifiers),
-    }),
-    {} as SlotsMap<Slot>
-  )
+  return slotNames.reduce((acc, slot) => {
+    acc[slot] = getClassNamesForSlot(slot, classes, modifiers)
+
+    return acc
+  }, {} as SlotsMap<Slot>)
 }
 
 const getClassNamesForSlot = (
@@ -57,7 +54,7 @@ const getClassNamesForSlot = (
 ) => {
   const classNamesWithModifiers = modifiers
     ? Object.entries(modifiers).map(
-        ([option, value]) => !!value && classes[`${slot}${capitalize(option)}`]
+        ([modifier, value]) => !!value && classes[`${slot}${capitalize(modifier)}`]
       )
     : []
 
