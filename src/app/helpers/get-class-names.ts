@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 
 type SlotsMap<T extends string> = Record<T, string>
 type ModifiersMap<T extends string> = Record<T, any>
-type NotExisting = null | undefined
+type Nullish = null | undefined
 
 // prettier-ignore
 export type ClassesObj<
@@ -12,11 +12,11 @@ export type ClassesObj<
   ? Partial<SlotsMap<Slot>>
   : Partial<SlotsMap<`${Slot}${Capitalize<Modifier>}`> & SlotsMap<Slot>>
 
-const configure = <Slot extends string, Option extends string = never>(
+const configure = <Slot extends string, Modifier extends string = never>(
   slotNames: Slot[],
-  modifiers?: ModifiersMap<Option>
+  modifiers?: ModifiersMap<Modifier>
 ) => {
-  return (...classes: (ClassesObj<Slot, Option> | NotExisting)[]) => {
+  return (...classes: (ClassesObj<Slot, Modifier> | Nullish)[]) => {
     const slotsMapArray = classes
       .map(classesObj => classesObj && getSlotsMap(slotNames, classesObj, modifiers))
       .filter(Boolean) as SlotsMap<Slot>[]
