@@ -54,7 +54,7 @@ const getClassNamesForSlot = (
 ) => {
   const classNamesWithModifiers = modifiers
     ? Object.entries(modifiers).map(
-        ([modifier, value]) => !!value && classes[`${slot}${capitalize(modifier)}`]
+        ([modifier, value]) => !!value && classes[`${slot}${capitalize(modifier, true)}`]
       )
     : []
 

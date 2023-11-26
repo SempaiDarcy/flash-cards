@@ -8,34 +8,40 @@ import {
   forwardRef,
 } from 'react'
 
+import getClassNames, { ClassesObj } from '@/app/helpers/get-class-names'
 import { Typography } from '@/app/ui/typography'
-import clsx from 'clsx'
 
 import s from './button.module.scss'
 
 export type ButtonVariant = 'link' | 'primary' | 'secondary' | 'tertiary'
+type ButtonSlot = 'label' | 'root'
+export type ButtonClasses = ClassesObj<ButtonSlot, 'fullWidth' | ButtonVariant>
 
 type OwnProps<T extends ElementType> = {
   as?: T
   children?: ReactNode
-  className?: string
+  classes?: ButtonClasses
   fullWidth?: boolean
   variant?: ButtonVariant
 }
 
 export type ButtonProps<T extends ElementType> = OwnProps<T> &
-  Omit<ComponentPropsWithoutRef<T>, keyof OwnProps<T>>
+  Omit<ComponentPropsWithoutRef<T>, 'className' | keyof OwnProps<T>>
 
 const ButtonRender = <T extends ElementType = 'button'>(
-  { as, children, className, fullWidth, variant = 'primary', ...rest }: ButtonProps<T>,
+  { as, children, classes, fullWidth, variant = 'primary', ...props }: ButtonProps<T>,
   ref: Ref<ElementRef<T>>
 ) => {
   const Component = as ?? ('button' as string)
-  const buttonClasses = clsx(s[variant], fullWidth && s.fullWidth, className)
+  const cls = getClassNames(['root', 'label'], { fullWidth, [variant]: variant })(s, classes)
 
   return (
-    <Component className={buttonClasses} ref={ref} {...rest}>
-      <Typography as={'span'} variant={variant === 'link' ? 'subtitle1' : 'subtitle2'}>
+    <Component className={cls.root} ref={ref} {...props}>
+      <Typography
+        as={'span'}
+        className={cls.label}
+        variant={variant === 'link' ? 'subtitle1' : 'subtitle2'}
+      >
         {children}
       </Typography>
     </Component>
