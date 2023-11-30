@@ -10,6 +10,7 @@ import s from './text-field.module.scss'
 type OwnProps = {
   disabled?: boolean
   errorMessage?: string
+  isModal?: boolean
   label?: string
   onValueChange?: (value: string) => void
   placeholder?: string
@@ -19,7 +20,17 @@ type TextFieldProps = OwnProps & Omit<ComponentPropsWithoutRef<'input'>, keyof O
 
 export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
   (
-    { disabled, errorMessage, label, onChange, onValueChange, placeholder, type, ...props },
+    {
+      disabled,
+      errorMessage,
+      isModal,
+      label,
+      onChange,
+      onValueChange,
+      placeholder,
+      type,
+      ...props
+    },
     ref
   ) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -40,7 +51,7 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
       ),
       fieldContainer: s.fieldContainer,
       label: clsx(s.label, disabled ? s.disabledLabel : s.label),
-      root: s.root,
+      root: clsx(!isModal && s.root),
       showPassword: s.showPassword,
       showSearch: s.showSearch,
     }
