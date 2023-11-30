@@ -1,5 +1,6 @@
-import { Control, FieldValues, useController, Path } from 'react-hook-form'
 import { ComponentPropsWithoutRef } from 'react'
+import { Control, FieldValues, Path, useController } from 'react-hook-form'
+
 import { TextField } from '@/app/ui/text-field'
 
 type UseControllerProps = ReturnType<typeof useController>['field']
@@ -14,9 +15,9 @@ export const Input = <T extends FieldValues>({ control, name, ...props }: InputP
     field: { ref, ...inputProps },
     fieldState: { error },
   } = useController({
-    name,
     control,
+    name,
   })
 
-  return <TextField {...inputProps} ref={ref} errorMessage={error?.message} {...props} />
+  return <TextField {...inputProps} errorMessage={error?.message} ref={ref} {...props} />
 }
