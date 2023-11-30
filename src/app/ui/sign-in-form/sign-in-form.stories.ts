@@ -3,13 +3,13 @@ import { Meta, StoryObj } from '@storybook/react'
 import { SignInForm } from './sign-in-form'
 
 const meta = {
-  component: SignInForm,
-  tags: ['autodocs'],
   argTypes: {
     onSubmit: {
       action: 'Signed In',
     },
   },
+  component: SignInForm,
+  tags: ['autodocs'],
 } satisfies Meta<typeof SignInForm>
 
 export default meta

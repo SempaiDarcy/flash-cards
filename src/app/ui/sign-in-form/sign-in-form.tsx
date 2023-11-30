@@ -28,13 +28,14 @@ export const SignInForm = ({ disabled, onSubmit }: SignInFormProps) => {
     handleSubmit,
     register,
   } = useForm<SignInFormSchema>({
-    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
+    resolver: zodResolver(signInSchema),
   })
+
   return (
     <Card className={s.container}>
       <Typography className={s.header} variant={'large'}>
